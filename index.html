@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Personal</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Animación para la aparición de los elementos */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px); /* Desplazamiento suave hacia arriba */
+            transition: opacity 1.5s ease, transform 1.5s ease; /* Transición más suave */
+        }
+
+        /* Cuando los elementos se cargan */
+        body.loaded .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 2px solid #444;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .header img {
+            height: 40px; /* Ajustado tamaño del logo */
+            width: 40px;  /* Ajustado tamaño del logo */
+            border-radius: 10px;
+            border: 2px solid #000000;
+            margin-right: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de transición en el logo */
+        }
+        .header img:hover {
+            transform: scale(1.2); /* Efecto de zoom más grande al pasar sobre el logo */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .header h1 {
+            font-size: 1.6em; /* Tamaño de fuente ajustado */
+            margin: 0;
+            font-family: 'Arial', sans-serif; /* Fuente Arial */
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: capitalize; /* Primeras letras en mayúsculas */
+            transition: color 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease; /* Transición suave */
+        }
+        .header:hover h1 {
+            transform: translateY(-5px); /* Desplazamiento suave hacia arriba */
+            letter-spacing: 2px; /* Aumento del espaciado de letras */
+        }
+        .header:hover {
+            background-color: #333333; /* Cambio de fondo del encabezado */
+            transform: translateY(-5px); /* Desplazamiento hacia arriba del encabezado */
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            text-align: center;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+        }
+        .profile-image {
+            width: 200px;
+            height: 300px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 1);
+        }
+        h1 {
+            color: #f4f4f4;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        p {
+            line-height: 1.8;
+            color: #b0b0b0;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-links a {
+            display: inline-block;
+            width: 40px; /* Ajustado el tamaño del icono */
+            height: 40px; /* Ajustado el tamaño del icono */
+            text-decoration: none;
+            color: #ffffff;
+            border-radius: 50%; /* Mantener el borde redondeado */
+            background-color: #ffffff; /* Fondo blanco */
+            border: 2px solid #ffffff; /* Borde blanco */
+            background-size: cover;
+            box-shadow: none; /* Sin sombra */
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .social-links a:nth-child(1) {
+            background-image: url('https://i.ibb.co/RHhT8Wv/171.png'); /* Reemplazar con el logo de Facebook */
+            border-color: #1877f2; /* Color de borde para Facebook */
+        }
+        .social-links a:nth-child(2) {
+            background-image: url('https://i.ibb.co/XYPLSrS/18.png'); /* Reemplazar con el logo de Instagram */
+            border-color: #d6249f; /* Color de borde para Instagram */
+        }
+        .social-links a:nth-child(3) {
+            background-image: url('https://i.ibb.co/X3Ggb7j/19.jpg'); /* Reemplazar con el logo de WhatsApp */
+            border-color: #25d366; /* Color de borde para WhatsApp */
+        }
+        .social-links a:nth-child(4) {
+            background-image: url('https://i.ibb.co/VJ7Bh3m/gmail-icon-free-png.webp'); /* Reemplazar con el logo de Gmail */
+            border-color: #ffffff; /* Borde blanco para Gmail */
+        }
+        .social-links a:hover {
+            transform: scale(1.1);
+            background-color: #f4f4f4; /* Fondo más claro al pasar el mouse */
+        }
+        .additional-info {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #292929;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .additional-info:hover {
+            background-color: #343434;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+        .additional-info img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .additional-info img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+        }
+        .additional-info p {
+            font-size: 1.1em;
+            color: #c0c0c0;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 150px;
+                height: 225px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .additional-info img {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header fade-in">
+        <img src="https://i.ibb.co/yN93Dk7/Dise-o-sin-t-tulo-6.jpg" alt="Logo">
+        <h1>Unidad Internacional del Saber y Asociados®</h1>
+    </div>
+    <div class="container fade-in">
+        <img src="https://i.ibb.co/Kp3y4KbB/Gutierrez-Natali-Ivana-Sol.jpg" alt="Foto de perfil" class="profile-image">
+        <h1>Gutierrez Natali Ivana Sol </h1>
+        <p>
+            Gutierrez Natali Ivana Sol.
+            Especialista en Psicología Holística
+           villa Regina, Río Negro, Argentina </p>
+            <p>Número de Matricula: 19455978414-2</p>
+            <p>intitución formadora: Asociación de Formación Holística Andina®</p>
+       
+        <div class="social-links">
+            <a href="https://https://www.facebook.com/andinaformaciones/" title="Facebook"></a>
+            <a href="https://www.instagram.com/" title="Instagram"></a>
+            <a href="https://wa.me/5492984925224" title="WhatsApp"></a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=coraztosc@gmail.com&su=Consulta&body=Hola,%20me%20gustaría%20saber%20más%20información%20sobre%20Psicología%20Integral%20Holística." title="Gmail"></a>
+        </div>
+        <div class="additional-info fade-in">
+            <img src="https://i.ibb.co/D4LPgyw/Dise-o-sin-t-tulo-5.jpg/800x600" alt="Imagen adicional">
+            <P>ESPECIALISTA EN PSICOLOGÍA HOLÍSTICA</P>
+            <p>
+                Gutiérrez Natali Ivana Sol nació en la ciudad de Villa Regina, ubicada en el fértil Valle de la provincia de Río Negro. Desde su infancia manifestó una profunda conexión espiritual y una mediumnidad natural, con la capacidad de percibir personas, energías y entidades. Esta sensibilidad innata la llevó desde muy joven a sentir un llamado interno hacia la ayuda y el acompañamiento espiritual, motivada por una fuerza superior que aún hoy la impulsa en su camino.
+
+                A lo largo de su vida, Natali ha consolidado su formación en diversas disciplinas holísticas, obteniendo certificaciones en Cirugía Energética Astral, Sanación Chamánica, Biodecodificación y Reiki Usui. Gracias a estos conocimientos, ha desarrollado una práctica de sanación profunda, guiada por el respeto, la ética y la empatía hacia cada ser que acompaña en su proceso.
+                
+                Posee una sensibilidad energética particularmente aguda: suele percibir con claridad las emociones y estados de quienes la rodean, especialmente a través del contacto físico, motivo por el cual ejerce su labor con extremo cuidado y conciencia. Se considera canalizadora y artista autodidacta; canaliza información y energía a través de la pintura y la escritura. En este ámbito ha realizado exposiciones propias y ha sido reconocida por instituciones de cultura a nivel provincial.
+                
+                Su recorrido espiritual está marcado por experiencias intensas, como la participación en casos de personas desaparecidas —aportando datos precisos que luego fueron confirmados—, así como intervenciones espontáneas en situaciones energéticamente densas, como limpiezas y exorcismos, que emergieron de manera natural e intuitiva. Estas vivencias, aunque difíciles de explicar en palabras, han sido fundamentales en su evolución personal y profesional.
+                
+                Complementa su formación espiritual con conocimientos en áreas técnicas y prácticas como Derecho Procesal Penal, Gestoría General y Primeros Auxilios, aportando una visión integral a su enfoque de servicio. Actualmente, se desempeña como administradora en la empresa familiar, donde combina su perfil organizativo con su vocación de asistencia y contención.
+                
+                Natali es madre de tres hijos y vive rodeada del amor y el cuidado de su familia, quienes representan un pilar esencial en su vida. Se define como una mujer fuerte, guiada por una energía superior que la impulsa a estar siempre al servicio, brindando luz, contención y guía a quienes la necesitan.</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</body>
+</html>
